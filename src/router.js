@@ -12,7 +12,11 @@ export default new Router({
       path: '/',
       name: 'index',
       component: Index
-      // component: () => import(/* webpackChunkName: "lazy-loaded-component" */ './views/index.vue')
+    },
+    {
+      path: '/chat',
+      name: 'chat',
+      component: () => import(/* webpackChunkName: "lazy-loaded-component" */ './views/chat.vue')
     }
   ]
 })
