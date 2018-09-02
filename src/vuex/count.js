@@ -6,7 +6,7 @@ const store = new Vuex.Store({
   state: {
     count: 7,
     chatID: null,
-    token: 'eyJleHAiOjE1MzU3MjI4NzgsImFsZyI6IkhTMjU2IiwiaWF0IjoxNTM1NzE5ODc4fQ.eyJleHAiOjE1MzU3MjI4NzgsInhoIjoiODAwMDExNjA5MyIsImlkIjoiNjE2MDQ4MDUxMiJ9.8F5DIxk7PLrLHWuBQR4OZiBDmcMJ_Vv6TQht9ePPHI8'
+    token: 'eyJpYXQiOjE1MzU5MDI1MjIsImV4cCI6MTUzNTkwNTUyMiwiYWxnIjoiSFMyNTYifQ.eyJleHAiOjE1MzU5MDU1MjIsImlkIjoiNjE2MDQ4MDUxMiIsInhoIjoiODAwMDExNjA5MyJ9.LBiOy70jhWyA9lnPtQTgSbf-vt2oQdqyfT1CET2PBHE'
   },
   mutations: {
     descrement (state) {

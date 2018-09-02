@@ -5,8 +5,8 @@
         <p>选择性别 (优先男女匹配哦~)</p>
       </div>
       <div class="sex-wrap">
-        <img @click="setSex('女')" src="../assets/image/girl.png" alt="girl">
-        <img @click="setSex('男')" src="../assets/image/boy.png" alt="boy">
+        <img @click="setSex('女')" src="../assets/image/girl.png" alt="girl" :class="{'selected': sex === '女'}">
+        <img @click="setSex('男')" src="../assets/image/boy.png" alt="boy" :class="{'selected': sex === '男'}">
       </div>
       <div class="bt-wrap">
         <button @click="throwSex()">确定</button>

@@ -7,5 +7,9 @@
   *{
     margin: 0;
     padding: 0;
+    outline: none;
+  }
+  button::-moz-focus-inner{
+    border: 0;
   }
 </style>

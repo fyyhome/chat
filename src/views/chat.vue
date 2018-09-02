@@ -3,14 +3,22 @@
         <canvas id="myCanvas" style="border: 0">Your browser does not support the HTML5 canvas tag.
         </canvas>
         <div class="container">
+          <div class="title">
+            <img src="../assets/image/boy.png" alt="">
+            <p>{{question}}</p>
+          </div>
            <ul>
              <li>
-               <div>
+               <div v-for="(item, index) of msgs" :key="index" class="{ item.type === 'send' ? 'send-wrap' : 'recive-wrap'}">
                  <img class="head-img" src="../assets/image/boy.png" alt="headImg" />
-                 <div class="message-wrap">这里是消息！！!23333333333333333333333333333333333333333333333333333333333333333333333333333333</div>
+                 <div class="message-wrap">{{item.text}}</div>
                </div>
              </li>
            </ul>
+           <div class="bt-wrap">
+             <input type="text" name="sendText" v-model="msgText">
+             <button id="sendBT" @click="sendMsg()">发送</button>
+           </div>
         </div>
     </div>
 </template>
@@ -38,48 +46,58 @@ export default {
       question: '',
       message: '1.随机匹配 ，优先男女2.如遇违规,长按举报3.时间不定，喜欢抓紧4.多次好评，无限匹配5.随机奖励，加时续命',
       msgs: [],
-      inputContent: '',
-      oContent: {},
-      oInput: {},
-      socket: null
+      socket: null,
+      msgText: '',
+      remainProgress: {
+        time: 180
+      }
     }
   },
   methods: {
     getQ () {
-      let index
-      index = Math.floor((Math.random() * this.Ques.length))
+      let index = Math.floor((Math.random() * this.Ques.length))
       this.question = this.Ques[index]
     },
     initial () {
-      this.socket = new WebSocket('ws://116.196.123.49:8888/c?token=' + window.localStorage.token)
-      this.socket.onopen = function (evt) {
-        document.getElementById('sendMsg').disabled = false
+      this.socket = new WebSocket('ws://120.27.137.151:9976/api/ws?token=' + this.$store.state.token)
+      this.socket.onopen = (evt) => {
+        document.getElementById('sendBT').disabled = false
       }
-      let that = this
-      this.socket.onmessage = function (evt) {
+      this.socket.onmessage = (evt) => {
         let res = JSON.parse(evt.data)
         console.log(res)
-        that.appendChatDiv('recive', res.msg)
       }
-      this.socket.onerror = function (evt) {
-        console.log('网络错误！')
-        document.getElementById('sendMsg').disabled = true
+      this.socket.onerror = (evt) => {
+        console.error(evt)
+        // document.getElementById('sendBT').disabled = true
       }
-      this.socket.onclose = function (evt) {
-        document.getElementById('sendMsg').disabled = true
+      this.socket.onclose = (evt) => {
+        // document.getElementById('sendBT').disabled = true
+      }
+    },
+    sendMsg () {
+      console.log('time: ' + this.remainProgress.time)
+      if (this.msgText !== '') {
+        this.socket.send(this.msgText)
+        this.msgs.push({
+          text: this.msgText,
+          type: 'send'
+        })
+        this.msgText = ''
       }
     }
   },
   computed: {
   },
   created () {
+    this.initial()
     this.getQ()
   },
   mounted () {
     let node = document.getElementById('myCanvas')
     node.width = window.screen.width
     node.height = window.screen.height
-    backgroundCanvasFn(node)
+    backgroundCanvasFn(node, this.remainProgress)
   }
 }
 </script>
@@ -95,9 +113,15 @@ export default {
     background-color: transparent;
     width: 100vw;
     height: 100vh;
+    overflow: hidden;
   }
   .container > ul > li > div{
     display: flex;
+  }
+  .send-wrap{
+    flex-direction: row-reverse;
+  }
+  .recive-wrap{
     flex-direction: row;
   }
   .head-img{
@@ -115,5 +139,52 @@ export default {
     padding: 10px;
     max-width: 50vw;
     word-break: break-all;
+  }
+  .title{
+    display: flex;
+    flex-direction: row;
+    max-width: 70vw;
+    overflow: hidden;
+    height: 8vw;
+    font-size: 16px;
+    background-color: white;
+    border: 0;
+    border-radius: 12px;
+    color: red;
+    margin: 0 auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+  .title > img{
+    width: 8vw;
+    height: 8vw;
+  }
+  .title > p{
+    height: 100%;
+    padding-left: 2vw;
+    line-height: 8vw;
+  }
+  .bt-wrap{
+    width: 90vw;
+    position: fixed;
+    left: 50%;
+    margin-left: -45vw;
+    bottom: 4vh;
+    display: flex;
+    justify-content: space-between;
+  }
+  .bt-wrap > input{
+    width: 72vw;
+    border: 0;
+    background-color: white;
+    border-radius: 8px;
+    padding-left: 5px;
+  }
+  .bt-wrap > button{
+    width: 15vw;
+    border: 0;
+    border-radius: 8px;
+    background-color: red;
+    color: white;
   }
 </style>

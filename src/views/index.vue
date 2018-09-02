@@ -44,6 +44,9 @@ export default {
       this.$axios.get('/api/match').then((res) => {
         if (res.data.code === 0) {
           this.$store.commit('setChatID', res.data.chatId)
+          this.$router.push('/chat')
+        } else {
+          console.log(res.data.msg)
         }
       })
     }

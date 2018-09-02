@@ -1,4 +1,4 @@
-export default function (canvasNode) {
+export default function (canvasNode, progressTime) {
   let c = canvasNode
   let waveWidth = c.width + c.width / 4
   let offset = 0
@@ -7,7 +7,8 @@ export default function (canvasNode) {
   let startX = -c.width / 4
   let startY = c.height + 5
   let progress = c.height + 10
-  let progressStep = 1 // c.height / (180 * 60),
+  progressTime.time = progress
+  let progressStep = c.height / (180 * 60)
   let d2 = waveWidth / waveCount
   let d = d2 / 2
   let hd = d / 2
@@ -17,6 +18,7 @@ export default function (canvasNode) {
   function tick () {
     offset -= 2
     progress -= progressStep
+    progressTime.time = progress
     if (progress < 0) return
     if (-1 * offset >= d2) offset = 0
     ctx.fillStyle = '#ffecec'
