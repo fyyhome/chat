@@ -20,11 +20,13 @@
              <button id="sendBT" @click="sendMsg()">发送</button>
            </div>
         </div>
+        <tip title="这是提示!" v-if="tipStatus"></tip>
     </div>
 </template>
 
 <script>
 import backgroundCanvasFn from '../assets/js/chatCanvas'
+import Tip from '../components/Tip'
 export default {
   data () {
     return {
@@ -50,8 +52,12 @@ export default {
       msgText: '',
       remainProgress: {
         time: 180
-      }
+      },
+      tipStatus: false
     }
+  },
+  components: {
+    Tip
   },
   methods: {
     getQ () {
