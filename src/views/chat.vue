@@ -8,8 +8,8 @@
             <p>{{question}}</p>
           </div>
            <ul>
-             <li>
-               <div v-for="(item, index) of msgs" :key="index" class="{ item.type === 'send' ? 'send-wrap' : 'recive-wrap'}">
+             <li v-for="(item, index) of msgs" :key="index">
+               <div class="{ item.type === 'send' ? 'send-wrap' : 'recive-wrap'}">
                  <img class="head-img" src="../assets/image/boy.png" alt="headImg" />
                  <div class="message-wrap">{{item.text}}</div>
                </div>
@@ -115,6 +115,9 @@ export default {
     height: 100vh;
     overflow: hidden;
   }
+  .container > ul > li{
+    margin: 15px 0;
+  }
   .container > ul > li > div{
     display: flex;
   }
@@ -136,8 +139,10 @@ export default {
     background-color: white;
     border: 1px solid palevioletred;
     border-radius: 8px;
-    padding: 10px;
+    padding: 6px;
     max-width: 50vw;
+    display: flex;
+    align-items: center;
     word-break: break-all;
   }
   .title{

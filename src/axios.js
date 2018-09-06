@@ -18,7 +18,7 @@ const getAPPToken = () => {
 const instance = axios.create({
   // baseURL: 'http://120.27.137.151:9976',
   baseURL: '',
-  timeout: 20000
+  timeout: 5000
 })
 instance.defaults.headers.common['Authorization'] = ''
 instance.interceptors.request.use((config) => {
