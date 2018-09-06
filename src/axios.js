@@ -1,19 +1,6 @@
 import axios from 'axios'
-import Miracle from 'incu-webview'
+import { getAPPToken } from './assets/js/getAppData'
 import store from './vuex/count'
-
-const getAPPToken = () => {
-  return new Promise((resolve, reject) => {
-    if (Miracle.isApp()) {
-      Miracle.onAppReady(() => {
-        store.commit('setToken', Miracle.getData().user.token)
-        resolve()
-      })
-    } else {
-      reject(new Error('Miracle 获取app数据失败'))
-    }
-  })
-}
 
 const instance = axios.create({
   // baseURL: 'http://120.27.137.151:9976',

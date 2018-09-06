@@ -21,12 +21,14 @@
            </div>
         </div>
         <tip title="这是提示!" v-if="tipStatus"></tip>
+        <ping-jia @pingjia-click="setPingJIa($event)" title="聊天结束了啦，评价一下TA吧～" v-show="pingjia !== null"></ping-jia>
     </div>
 </template>
 
 <script>
 import backgroundCanvasFn from '../assets/js/chatCanvas'
 import Tip from '../components/Tip'
+import PingJia from '../components/pingjia'
 export default {
   data () {
     return {
@@ -53,16 +55,33 @@ export default {
       remainProgress: {
         time: 180
       },
-      tipStatus: false
+      tipStatus: false,
+      pingjia: null
     }
   },
   components: {
-    Tip
+    Tip,
+    PingJia
   },
   methods: {
     getQ () {
       let index = Math.floor((Math.random() * this.Ques.length))
       this.question = this.Ques[index]
+    },
+    setPingJIa (evt) {
+      this.pingjia = evt
+      this.$axios.post('/api/evaluate', {
+        chatId: this.$store.state.chatId,
+        evaluate: this.pingjia
+      }).then((res) => {
+        if (res.data.code === 0) {
+          this.$router.push('/')
+        } else {
+          console.log(res.data.msg)
+        }
+      }).catch((error) => {
+        console.log(error + '')
+      })
     },
     initial () {
       this.socket = new WebSocket('ws://120.27.137.151:9976/api/ws?token=' + this.$store.state.token)
@@ -75,10 +94,10 @@ export default {
       }
       this.socket.onerror = (evt) => {
         console.error(evt)
-        // document.getElementById('sendBT').disabled = true
+        document.getElementById('sendBT').disabled = true
       }
       this.socket.onclose = (evt) => {
-        // document.getElementById('sendBT').disabled = true
+        document.getElementById('sendBT').disabled = true
       }
     },
     sendMsg () {
@@ -92,8 +111,6 @@ export default {
         this.msgText = ''
       }
     }
-  },
-  computed: {
   },
   created () {
     this.initial()
