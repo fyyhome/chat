@@ -11,15 +11,15 @@
         <div><img src="../assets/image/transmit.png" alt=""></div>
         <div class="headimg-wrap match-friend"><img src="" alt=""></div>
       </div>
-      <p>多次收获好评有机会获得无限次数匹配机会哦～</p>
+      <p>多次收获好评有机会获得无限次数匹配机会～</p>
     </div>
     <div class="containner match-nonum" v-show="nonum">
       <button class="nonum-bt" disabled>匹配次数已用完</button>
-      <p>下次活动再见哦～遇见佳缘2.0等你</p>
+      <p>下次活动再见～遇见佳缘2.0等你</p>
     </div>
     <div class="containner match-allnum" v-show="allnum">
       <button class="nonum-bt allnum-bt" disabled>无限次数匹配</button>
-      <p>获得多次好评有机会无限匹配哦～</p>
+      <p>获得多次好评有机会无限匹配～</p>
     </div>
     <tip :title="tipTitle" v-show="tipTitle != ''"></tip>
   </div>
@@ -38,7 +38,7 @@ export default {
       count: this.$store.state.count,
       avatar: this.$store.state.avatar,
       matching: false,
-      nonum: false,
+      nonum: true,
       allnum: false,
       tipTitle: ''
     }
@@ -154,17 +154,22 @@ export default {
     left: 50%;
     transform: translateX(-50%);
     text-align: center;
-    color: white;
+    font-family: PingFang-SC-Regular;
+    font-size: 2vh;
+    letter-spacing: 0px;
+    color: #ffffff;
   }
-  .match-nonum,.match-allnum > p{
+  .match-nonum > p,.match-allnum > p{
     position: absolute;
     max-width: 60vw;
     top: 90vh;
-    color: white;
-    font-size: 12px;
     left: 50%;
     transform: translateX(-50%);
     text-align: center;
+    font-family: PingFang-SC-Regular;
+    font-size: 2vh;
+    letter-spacing: 0px;
+    color: #ffffff;
   }
   .headimg-wrap{
     width: 16vw;
@@ -187,12 +192,17 @@ export default {
   }
   .nonum-bt{
     width: 45vw;
-    height: 6vh;
-    border-radius: 12px;
+    height: 7.5vh;
+    border-radius: 10px;
     position: absolute;
     top: 80vh;
     left: 50%;
-    color: white;
+    color: #ffffff;
+    font-size: 2.8vh;
+    font-family: PingFang-SC-Regular;
+    font-weight: normal;
+    font-stretch: normal;
+    letter-spacing: 0px;
     background-color: grey;
     text-align: center;
     vertical-align: middle;
@@ -200,7 +210,7 @@ export default {
     border: 0;
   }
   .allnum-bt{
-    background-color: blue;
+    background-color: #49b2e3;
   }
   .btn-text {
     display: block;
@@ -209,20 +219,28 @@ export default {
     position: relative;
     top: 81vh;
     border: 0;
-    border-radius: 8px;
-    background-color: red;
+    border-radius: 10px;
+    background-color: #ed847d;
     width: 45%;
+    height: 7.5vh;
     text-align: center;
-    opacity: 0.6;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    font-size: 18px;
-    color: whitesmoke;
+    font-size: 2.8vh;
+    font-family: PingFang-SC-Regular;
+    font-weight: normal;
+    font-stretch: normal;
+    letter-spacing: 0px;
+    color: #ffffff;
   }
   .btn-bottom {
     position: relative;
-    top:84vh;
+    top:83vh;
     text-align: center;
-    font-size: 12px;
-    color: black;
+    font-family: PingFang-SC-Regular;
+    font-size: 2vh;
+    font-weight: normal;
+    font-stretch: normal;
+    line-height: 48px;
+    letter-spacing: 0px;
+    color: #696969;
   }
 </style>
