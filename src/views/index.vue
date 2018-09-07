@@ -71,7 +71,7 @@ export default {
     match () {
       if (this.count > 0) {
         this.matching = true
-        this.$axios.get('/api/match').then((res) => {
+        this.$axios.get('/api/match?avatar=' + this.$store.state.avatar).then((res) => {
           if (res.data.code === 0) {
             this.$store.commit('setChatID', res.data.chatId)
             this.$store.commit('descrement')
