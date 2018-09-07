@@ -21,12 +21,15 @@
       <button class="nonum-bt allnum-bt" disabled>无限次数匹配</button>
       <p>获得多次好评有机会无限匹配哦～</p>
     </div>
+    <tip :title="tipTitle" v-show="tipTitle != ''"></tip>
   </div>
 </template>
 
 <script>
 import SexTable from '../components/SexTable.vue'
 import { getUserAvatar } from '../assets/js/getAppData'
+import Tip from '../components/Tip'
+import { setTimeout } from 'timers'
 export default {
   data () {
     return {
@@ -36,11 +39,13 @@ export default {
       avatar: this.$store.state.avatar,
       matching: false,
       nonum: false,
-      allnum: false
+      allnum: false,
+      tipTitle: ''
     }
   },
   components: {
-    SexTable
+    SexTable,
+    Tip
   },
   methods: {
     getSex (value) {
@@ -83,13 +88,27 @@ export default {
       } else {
         this.nonum = true
       }
+    },
+    fetchRouterMsg () {
+      if (this.$route.params.msg === 'pingjia') {
+        this.tipTitle = '评价成功'
+        setTimeout(() => {
+          this.tipTitle = ''
+        }, 800)
+      } else {
+        this.tipTitle = ''
+      }
     }
   },
   created () {
     this.getUserInfo()
+    this.fetchRouterMsg()
     getUserAvatar().then().catch((error) => {
       console.log(error + '')
     })
+  },
+  watch: {
+    '$router': 'fetchRouterMsg'
   }
 }
 </script>

@@ -20,7 +20,7 @@
              <button id="sendBT" @click="sendMsg()">发送</button>
            </div>
         </div>
-        <tip title="这是提示!" v-if="tipStatus"></tip>
+        <tip title="还剩一分钟哦!" v-if="remainProgress.time < 60 && remainProgress.time >= 59"></tip>
         <ping-jia @pingjia-click="setPingJIa($event)" title="聊天结束了啦，评价一下TA吧～" v-show="pingjia !== null"></ping-jia>
     </div>
 </template>
@@ -75,7 +75,7 @@ export default {
         evaluate: this.pingjia
       }).then((res) => {
         if (res.data.code === 0) {
-          this.$router.push('/')
+          this.$router.push({ name: 'index', params: { msg: 'pingjia' } })
         } else {
           console.log(res.data.msg)
         }
@@ -111,6 +111,11 @@ export default {
         this.msgText = ''
       }
     }
+  },
+  computed: {
+    // getRemainTime () {
+    //   return (this.remainProgress.time / (this.remainProgress.step * 60)) <= 150
+    // }
   },
   created () {
     this.initial()
@@ -214,5 +219,8 @@ export default {
     border-radius: 8px;
     background-color: red;
     color: white;
+  }
+  .bt-wrap > button:disabled{
+    background-color: gray;
   }
 </style>
