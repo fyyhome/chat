@@ -5,8 +5,8 @@
         <p>选择性别 (优先男女匹配哦~)</p>
       </div>
       <div class="sex-wrap">
-        <img @click="setSex('女')" src="../assets/image/girl.png" alt="girl" :class="{'selected': sex === '女'}">
-        <img @click="setSex('男')" src="../assets/image/boy.png" alt="boy" :class="{'selected': sex === '男'}">
+        <img id="girl" @click="setSex('女')" src="../assets/image/girl.png" alt="girl" :class="{'selected': sex === '女'}">
+        <img id="boy" @click="setSex('男')" src="../assets/image/boy.png" alt="boy" :class="{'selected': sex === '男'}">
       </div>
       <div class="bt-wrap">
         <button @click="throwSex()">确定</button>
@@ -43,7 +43,7 @@ export default {
     left: 0;
     bottom: 0;
     right: 0;
-    background-color: rgba(255, 255, 255, 0.5);
+    background-color: rgba(19, 12, 12, 0.158);
     display: flex;
     align-items: center;
   }
@@ -54,6 +54,7 @@ export default {
     margin: 0 auto;
     display: flex;
     flex-direction: column;
+    border-radius: 20px;
   }
   .containner-wrap > div{
     display: flex;
@@ -66,7 +67,7 @@ export default {
   }
   .title-wrap > p{
     align-self: flex-end;
-    margin-bottom: 1vh;
+    margin-bottom: 3vh;
   }
   .sex-wrap{
     height: 16vh;
@@ -74,8 +75,8 @@ export default {
     align-items: center;
   }
   .sex-wrap > img{
-    width: 21.5vw;
-    height: 21.5vw;
+    width: 14vh;
+    height: 14vh;
     border-radius: 50%;
   }
   .bt-wrap{
@@ -86,12 +87,17 @@ export default {
     width: 100%;
     height: 100%;
     border: none;
-    border-top: 1px solid red;
+    border-top: 1px solid #ffeef1;
     color: #5b5b5b;
     font-size: 20px;
     background-color: #ffeef1;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
   }
-  .selected,img:hover{
-    border: 4px solid blue;
+  .selected,#boy:hover{
+    border: 2px solid #60d0e8;
+  }
+  .selected,#girl:hover{
+    border: 2px solid #ff8599;
   }
 </style>

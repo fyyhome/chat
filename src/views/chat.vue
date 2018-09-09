@@ -164,8 +164,8 @@ export default {
   .message-wrap{
     box-sizing: border-box;
     font-size: 16px;
-    background-color: white;
-    border: 1px solid palevioletred;
+    background-color: #ffffff;
+    border: 1px solid #ffb5b5;
     border-radius: 8px;
     padding: 6px;
     max-width: 50vw;
@@ -179,14 +179,18 @@ export default {
     max-width: 70vw;
     overflow: hidden;
     height: 8vw;
-    font-size: 16px;
     background-color: white;
     border: 0;
-    border-radius: 12px;
-    color: red;
+    border-radius: 13px;
     margin: 0 auto;
     margin-top: 20px;
     margin-bottom: 20px;
+    font-family: PingFang-SC-Regular;
+    font-size: 16px;
+    font-weight: normal;
+    font-stretch: normal;
+    letter-spacing: 0px;
+    color: #dc7474;
   }
   .title > img{
     width: 8vw;
@@ -207,18 +211,32 @@ export default {
     justify-content: space-between;
   }
   .bt-wrap > input{
-    width: 72vw;
+    width: 75vw;
+    height: 5vh;
     border: 0;
     background-color: white;
     border-radius: 8px;
     padding-left: 5px;
+    font-family: PingFang-SC-Regular;
+    font-size: 1.9vh;
+    font-weight: normal;
+    font-stretch: normal;
+    letter-spacing: 0px;
+    color: #666666;
+
   }
   .bt-wrap > button{
-    width: 15vw;
+    width: 12vw;
+    height: 5vh;
     border: 0;
     border-radius: 8px;
-    background-color: red;
-    color: white;
+    background-color: #d66161;
+    font-family: PingFang-SC-Regular;
+    font-size: 1.9vh;
+    font-weight: normal;
+    font-stretch: normal;
+    letter-spacing: 0px;
+    color: #ffffff;
   }
   .bt-wrap > button:disabled{
     background-color: gray;
