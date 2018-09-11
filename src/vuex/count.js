@@ -7,7 +7,18 @@ const store = new Vuex.Store({
     count: 7,
     chatID: null,
     avatar: '',
-    token: 'eyJpYXQiOjE1MzYyMDM0MDYsImV4cCI6MTUzNjIwNjQwNiwiYWxnIjoiSFMyNTYifQ.eyJleHAiOjE1MzYyMDY0MDYsImlkIjoiNjE2MDQ4MDUxMiIsInhoIjoiODAwMDExNjA5MyJ9.cIlZsgn-RXm1JxpswR8a1Gqah3Ipo8kwau0srxJwTdk'
+    mySex: null,
+    friendSex: null,
+    avatarArr: [
+      { boy: 'https://img5.duitang.com/uploads/item/201503/22/20150322065334_4NmAR.jpeg',
+        girl: 'https://img4q.duitang.com/uploads/item/201503/22/20150322065402_eLx3K.jpeg'
+      },
+      {
+        boy: 'https://img3.duitang.com/uploads/item/201508/15/20150815095648_EWxX5.jpeg',
+        girl: 'https://img5.duitang.com/uploads/item/201508/15/20150815095636_P4SiJ.thumb.700_0.jpeg'
+      }
+    ],
+    token: 'eyJpYXQiOjE1MzY2Nzc4NTksImV4cCI6MTUzNjY4MDg1OSwiYWxnIjoiSFMyNTYifQ.eyJleHAiOjE1MzY2ODA4NTksImlkIjoiNjE2MDQ4MDUxMiIsInhoIjoiODAwMDExNjA5MyJ9.pYMA7rj-pieya3XXpv0x1-eNw9AwpryAfZ_ONNCe4OI'
   },
   mutations: {
     descrement (state) {
@@ -25,13 +36,24 @@ const store = new Vuex.Store({
     },
     setAvatar (state, str) {
       state.avatar = str
+    },
+    setMySex (state, sex) {
+      state.mySex = sex
+    },
+    setFriendSex (state, sex) {
+      state.friendSex = sex
     }
   },
   getters: {
     getCount: state => state.count,
     getToken: state => state.token,
     getChatID: state => state.chatID,
-    getAvatar: state => state.avatar
+    getAvatar: state => state.avatar,
+    getMySex: state => state.mySex,
+    getFriendSex: state => state.friendSex,
+    getAvatarArr: (state) => (index = 0) => {
+      return state.avatarArr[index]
+    }
   }
 })
 

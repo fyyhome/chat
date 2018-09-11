@@ -38,7 +38,7 @@ export default {
       count: this.$store.state.count,
       avatar: this.$store.state.avatar,
       matching: false,
-      nonum: true,
+      nonum: false,
       allnum: false,
       tipTitle: ''
     }
@@ -54,6 +54,8 @@ export default {
       this.$axios.get(`/api/updategender?gender=${this.sex}`).then((res) => {
         if (res.data.code !== 0) {
           console.log('修改失败')
+        } else {
+          this.$store.commit('setMySex', this.sex)
         }
       })
     },
@@ -63,6 +65,7 @@ export default {
           this.isFirstLogin = true
         } else if (res.data.code === 0) {
           this.sex = res.data.gender
+          this.$store.commit('setMySex', this.sex)
         } else {
           console.log(res.data.msg)
         }
@@ -71,10 +74,11 @@ export default {
     match () {
       if (this.count > 0) {
         this.matching = true
-        this.$axios.get('/api/match?avatar=' + this.$store.state.avatar).then((res) => {
+        this.$axios.get('/api/match').then((res) => {
           if (res.data.code === 0) {
             this.$store.commit('setChatID', res.data.chatId)
             this.$store.commit('descrement')
+            this.$store.commit('setFriendSex', res.data.objGender)
             this.matching = false
             this.$router.push('/chat')
           } else {

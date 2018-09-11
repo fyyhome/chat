@@ -9,8 +9,8 @@
           </div>
            <ul>
              <li v-for="(item, index) of msgs" :key="index">
-               <div class="{ item.type === 'send' ? 'send-wrap' : 'recive-wrap'}">
-                 <img class="head-img" src="../assets/image/boy.png" alt="headImg" />
+               <div :class="[item.type === 'send' ? 'send-wrap' : 'recive-wrap']">
+                 <img class="head-img" :src="item.type === 'send' ? myAvatar : friendAvatar" alt="headImg" />
                  <div class="message-wrap">{{item.text}}</div>
                </div>
              </li>
@@ -21,7 +21,7 @@
            </div>
         </div>
         <tip title="还剩一分钟哦!" v-if="remainProgress.time < 60 && remainProgress.time >= 59"></tip>
-        <ping-jia @pingjia-click="setPingJIa($event)" title="聊天结束了啦，评价一下TA吧～" v-show="pingjia !== null"></ping-jia>
+        <ping-jia v-if="remainProgress.time <= 0" @pingjia-click="setPingJIa($event)" title="聊天结束了啦，评价一下TA吧～"></ping-jia>
     </div>
 </template>
 
@@ -56,7 +56,9 @@ export default {
         time: 180
       },
       tipStatus: false,
-      pingjia: null
+      pingjia: null,
+      myAvatar: null,
+      friendAvatar: null
     }
   },
   components: {
@@ -90,6 +92,10 @@ export default {
       }
       this.socket.onmessage = (evt) => {
         let res = JSON.parse(evt.data)
+        this.msgs.push({
+          text: res.msg,
+          type: 'recive'
+        })
         console.log(res)
       }
       this.socket.onerror = (evt) => {
@@ -101,7 +107,6 @@ export default {
       }
     },
     sendMsg () {
-      console.log('time: ' + this.remainProgress.time)
       if (this.msgText !== '') {
         this.socket.send(this.msgText)
         this.msgs.push({
@@ -110,16 +115,35 @@ export default {
         })
         this.msgText = ''
       }
+    },
+    getAvatars () {
+      let random = Math.floor(2 * Math.random())
+      if (this.$store.state.mySex === 0) {
+        this.myAvatar = this.$store.getters.getAvatarArr(random).boy
+      } else {
+        this.myAvatar = this.$store.getters.getAvatarArr(random).girl
+      }
+      if (this.$store.state.friendSex === 0) {
+        this.friendAvatar = this.$store.getters.getAvatarArr(random).boy
+      } else {
+        this.friendAvatar = this.$store.getters.getAvatarArr(random).girl
+      }
     }
   },
-  computed: {
-    // getRemainTime () {
-    //   return (this.remainProgress.time / (this.remainProgress.step * 60)) <= 150
-    // }
+  watch: {
+    remainProgress: {
+      handler ( newValue, oldValue) {
+        if (newValue < 0) {
+          this.socket.close()
+        }
+      },
+      deep: true
+    }
   },
   created () {
     this.initial()
     this.getQ()
+    this.getAvatars()
   },
   mounted () {
     let node = document.getElementById('myCanvas')

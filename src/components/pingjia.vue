@@ -39,6 +39,7 @@ export default {
     flex-direction: column;
     align-items: center;
     justify-content: space-around;
+    z-index: 999;
   }
   .title{
     margin-top: 10px;
@@ -61,6 +62,7 @@ export default {
     width: 18vw;
     height: 18vw;
     border: 1px solid white;
+    border-radius: 50%;
   }
   .avatar-wrap > img:hover{
     border: 1px solid blue;
