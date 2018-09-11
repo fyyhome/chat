@@ -2,7 +2,7 @@
   <div class="mask" v-show="status">
     <div class="containner-wrap">
       <div class="title-wrap">
-        <p>选择性别 (优先男女匹配哦~)</p>
+        <p>选择性别 (优先男女匹配)</p>
       </div>
       <div class="sex-wrap">
         <img id="girl" @click="setSex('女')" src="../assets/image/girl.png" alt="girl" :class="{'selected': sex === '女'}">
