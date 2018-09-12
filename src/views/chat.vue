@@ -33,18 +33,18 @@ export default {
   data () {
     return {
       Ques: [
-        '有什么好玩的游戏推荐嘛？',
-        '分享一部你最喜欢的电影吧',
-        '这个假期里你经历过什么有意思的事情呢？',
+        '有什么好玩的游戏推荐？',
+        '分享一部你最喜欢的电影',
+        '这个假期里你经历过什么有意思的事情？',
         '分享一个你自己特有的小技能？',
-        '或许可以从你最喜欢的小动物开始聊喔～',
+        '或许可以从你最喜欢的小动物开始聊',
         '介绍介绍你喜欢用的小众app吧！',
         '可以分享一下假期里有意义的事情吗？',
-        '夏天你有什么解暑续命大法呢？',
-        '也许可以从聊聊你们的专业开始喔～',
+        '夏天你有什么解暑续命大法？',
+        '也许可以从聊聊你们的专业开始',
         '或许可以先来聊聊你们最近在看的书？',
-        '或许可以从聊喜欢的音乐开始喔～',
-        '可以从最近在玩的游戏开始聊喔~',
+        '或许可以从聊喜欢的音乐开始',
+        '可以从最近在玩的游戏开始聊',
         '或许可以聊聊你喜不喜欢现在的专业？'
       ],
       question: '',
@@ -187,7 +187,7 @@ export default {
   }
   .message-wrap{
     box-sizing: border-box;
-    font-size: 16px;
+    font-size: 2vh;
     background-color: #ffffff;
     border: 1px solid #ffb5b5;
     border-radius: 8px;
@@ -205,7 +205,7 @@ export default {
     height: 8vw;
     background-color: white;
     border: 0;
-    border-radius: 13px;
+    border-radius: 5vh;
     margin: 0 auto;
     margin-top: 20px;
     margin-bottom: 20px;

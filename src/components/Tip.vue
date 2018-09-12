@@ -17,15 +17,15 @@ export default {
     min-height: 10vh;
     position: absolute;
     z-index: 999;
-    top: 50%;
+    top: 60%;
     left: 50%;
     transform: translate(-50%, -50%);
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 16px;
+    font-size: 2.1vh;
     color: white;
-    background-color: grey;
+    background-color: rgba(14, 14, 14, 0.71);
     padding: 0 10px;
     border-radius: 8px;
   }

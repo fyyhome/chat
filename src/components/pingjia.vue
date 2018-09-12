@@ -3,11 +3,11 @@
     <p class="title">{{title}}</p>
     <div>
       <div class="avatar-wrap">
-        <img @click="pingJiaFn(0)" src="../assets/image/icon_like.png" alt="like">
+        <img id="like" @click="pingJiaFn(0)" src="../assets/image/icon_like.png" alt="like">
         <span>喜欢,还想聊</span>
       </div>
       <div class="avatar-wrap">
-        <img @click="pingJiaFn(1)" src="../assets/image/icon_hate.png" alt="hate">
+        <img id="dislike" @click="pingJiaFn(1)" src="../assets/image/icon_hate.png" alt="hate">
         <span>错过吧,告辞</span>
       </div>
     </div>
@@ -30,7 +30,7 @@ export default {
     width: 80vw;
     height: 28vh;
     background-color: white;
-    border-radius: 8px;
+    border-radius: 16px;
     position: absolute;
     top: 50%;
     left: 50%;
@@ -39,12 +39,19 @@ export default {
     flex-direction: column;
     align-items: center;
     justify-content: space-around;
+    padding: 1px;
+    background: -webkit-linear-gradient( bottom, #fff 0%, #fff 100%), -webkit-linear-gradient( bottom, #60d0e8 0%, #ff8599 100%);
+    background-clip: content-box, padding-box;
     z-index: 999;
   }
   .title{
     margin-top: 10px;
-    color: red;
-    font-size: 18px;
+    font-family: PingFang-SC-Regular;
+    font-size: 2.2vh;
+    font-weight: normal;
+    font-stretch: normal;
+    letter-spacing: 0px;
+    color: #dc7474;
   }
   .tip-containner > div{
     width: 100%;
@@ -64,8 +71,11 @@ export default {
     border: 1px solid white;
     border-radius: 50%;
   }
-  .avatar-wrap > img:hover{
-    border: 1px solid blue;
+  .avatar-wrap > #like:hover{
+    border: 2px solid #ff8599;
+  }
+  .avatar-wrap > #dislike:hover{
+    border: 2px solid #60d0e8;
   }
   .avatar-wrap > span{
     padding: 10px;
