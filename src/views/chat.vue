@@ -132,7 +132,7 @@ export default {
   },
   watch: {
     remainProgress: {
-      handler ( newValue, oldValue) {
+      handler (newValue, oldValue) {
         if (newValue < 0) {
           this.socket.close()
         }

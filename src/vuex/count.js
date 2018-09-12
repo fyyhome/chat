@@ -18,7 +18,7 @@ const store = new Vuex.Store({
         girl: 'https://img5.duitang.com/uploads/item/201508/15/20150815095636_P4SiJ.thumb.700_0.jpeg'
       }
     ],
-    token: 'eyJpYXQiOjE1MzY2Nzc4NTksImV4cCI6MTUzNjY4MDg1OSwiYWxnIjoiSFMyNTYifQ.eyJleHAiOjE1MzY2ODA4NTksImlkIjoiNjE2MDQ4MDUxMiIsInhoIjoiODAwMDExNjA5MyJ9.pYMA7rj-pieya3XXpv0x1-eNw9AwpryAfZ_ONNCe4OI'
+    token: ''
   },
   mutations: {
     descrement (state) {
