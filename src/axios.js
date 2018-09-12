@@ -8,17 +8,20 @@ const instance = axios.create({
   timeout: 8000
 })
 instance.defaults.headers.common['Authorization'] = ''
-instance.interceptors.request.use((config) => {
+instance.interceptors.request.use(async (config) => {
   if (store.state.token) {
     config.headers.Authorization = store.state.token
     return config
   } else {
-    getAPPToken().then(() => {
-      config.headers.Authorization = store.state.token
-      return config
-    }).catch((error) => {
-      console.log(error)
-    })
+    await getAPPToken()
+    config.headers.Authorization = store.state.token
+    // getAPPToken().then(() => {
+    //   config.headers.Authorization = store.state.token
+    //   // return config
+    // }).catch((error) => {
+    //   console.log(error)
+    // })
+    return config
   }
 }, (_error) => {
   return Promise.reject(_error)
