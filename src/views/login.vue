@@ -43,11 +43,16 @@ export default {
     onSubmit () {
       this.$axios.get('api/login', { 'userId': this.username, 'password': this.password })
         .then((res) => {
+          this.$store.commit('setToken', res.token)
           if (res.status === 1) {
             this.$router.push('/index')
           } else {
             console.log(res.status + ',' + res.message)
-            this.tipTitle = '学号或密码错误'
+            if ((this.username != null && this.username.length > 0) || (this.password != null && this.password.length > 0)) {
+              this.tipTitle = '用户名或密码错误！'
+            } else {
+              this.tipTitle = '用户名或密码不能为空！'
+            }
           }
         })
     }
