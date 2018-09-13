@@ -8,12 +8,12 @@
         <div class="wrap_center">
             <div class="input1">
                 <div id="u_input">
-                    <input type="text" :value="username">
+                    <input type="text" :value="username" placeholder="请输入学号">
                 </div>
             </div>
             <div class="input2">
                 <div id="p_input">
-                    <input type="text" :value="password">
+                    <input type="password" :value="password" placeholder="请输入密码">
                 </div>
             </div>
         </div>
@@ -31,8 +31,8 @@ import Tip from '../components/Tip'
 export default {
   data () {
     return {
-      username: '请输入学号',
-      password: '请输入密码',
+      username: '',
+      password: '',
       tipTitle: ''
     }
   },
