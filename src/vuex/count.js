@@ -18,7 +18,8 @@ const store = new Vuex.Store({
         girl: 'https://img5.duitang.com/uploads/item/201508/15/20150815095636_P4SiJ.thumb.700_0.jpeg'
       }
     ],
-    token: ''
+    token: '',
+    isLogin: false
   },
   mutations: {
     descrement (state) {
@@ -42,6 +43,9 @@ const store = new Vuex.Store({
     },
     setFriendSex (state, sex) {
       state.friendSex = sex
+    },
+    setIsLOgin (state, status) {
+      state.isLogin = status
     }
   },
   getters: {
@@ -53,7 +57,8 @@ const store = new Vuex.Store({
     getFriendSex: state => state.friendSex,
     getAvatarArr: (state) => (index = 0) => {
       return state.avatarArr[index]
-    }
+    },
+    getIsLogin: state => state.isLogin
   }
 })
 
