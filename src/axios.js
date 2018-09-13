@@ -1,6 +1,7 @@
 import axios from 'axios'
-import { getAPPToken } from './assets/js/getAppData'
+// import { getAPPToken } from './assets/js/getAppData'
 import store from './vuex/count'
+import router from './router'
 
 const instance = axios.create({
   baseURL: 'http://120.27.137.151:9976',
@@ -9,20 +10,24 @@ const instance = axios.create({
 })
 instance.defaults.headers.common['Authorization'] = ''
 instance.interceptors.request.use(async (config) => {
-  if (store.state.token) {
-    config.headers.Authorization = store.state.token
-    return config
+  if (store.state.isLogin) {
+    if (store.state.token) {
+      config.headers.Authorization = store.state.token
+      return config
+    } else {
+      router.push('/login')
+    }
   } else {
-    await getAPPToken()
-    config.headers.Authorization = store.state.token
-    // getAPPToken().then(() => {
-    //   config.headers.Authorization = store.state.token
-    //   // return config
-    // }).catch((error) => {
-    //   console.log(error)
-    // })
     return config
   }
+  // if (store.state.token) {
+  //   config.headers.Authorization = store.state.token
+  //   return config
+  // } else {
+  //   await getAPPToken()
+  //   config.headers.Authorization = store.state.token
+  //   return config
+  // }
 }, (_error) => {
   return Promise.reject(_error)
 })
