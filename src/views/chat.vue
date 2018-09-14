@@ -147,14 +147,17 @@ export default {
   },
   mounted () {
     let node = document.getElementById('myCanvas')
-    node.width = window.screen.width
-    node.height = window.screen.height
+    node.width = window.innerWidth
+    node.height = window.innerHeight
     backgroundCanvasFn(node, this.remainProgress)
   }
 }
 </script>
 
 <style scoped>
+  #myCanvas{
+    overflow: hidden;
+  }
   .wrap{
     height: 100vh;
   }
@@ -227,7 +230,7 @@ export default {
   }
   .bt-wrap{
     width: 90vw;
-    position: fixed;
+    position: absolute;
     left: 50%;
     margin-left: -45vw;
     bottom: 4vh;

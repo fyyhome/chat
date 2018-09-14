@@ -8,17 +8,21 @@ const instance = axios.create({
   // baseURL: '',
   timeout: 8000
 })
-instance.defaults.headers.common['Authorization'] = ''
+// instance.defaults.headers.common['Authorization'] = ''
 instance.interceptors.request.use(async (config) => {
   if (store.state.isLogin) {
-    if (store.state.token) {
+    if (store.state.token !== '') {
       config.headers.Authorization = store.state.token
       return config
     } else {
-      router.push('/login')
+      router.push('/')
     }
   } else {
-    return config
+    if (config.url.indexOf('/login') === -1) {
+      router.push('/')
+    } else {
+      return config
+    }
   }
   // if (store.state.token) {
   //   config.headers.Authorization = store.state.token

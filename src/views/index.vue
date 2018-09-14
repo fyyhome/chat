@@ -83,10 +83,20 @@ export default {
             this.$router.push('/chat')
           } else {
             this.matching = false
+            if (res.data.code === 3) {
+              this.tipTitle = '次数已用完'
+              setTimeout(() => {
+                this.tipTitle = ''
+              }, 800)
+            }
             console.log(res.data.msg)
           }
         }).catch((error) => {
           this.matching = false
+          this.tipTitle = '未匹配到TA哦～'
+          setTimeout(() => {
+            this.tipTitle = ''
+          }, 800)
           console.log(error + '')
         })
       } else {
@@ -113,6 +123,12 @@ export default {
   },
   watch: {
     '$router': 'fetchRouterMsg'
+  },
+  computed: {
+    myCount () {
+      // this.count = this.$store.state.count
+      return this.count
+    }
   }
 }
 </script>
