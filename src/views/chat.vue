@@ -4,7 +4,7 @@
         </canvas>
         <div class="container">
           <div class="title">
-            <img src="../assets/image/boy.png" alt="">
+            <img src="../assets/image/icon_Q.png" alt="">
             <p>{{question}}</p>
           </div>
            <ul>

@@ -26,7 +26,7 @@ const store = new Vuex.Store({
       if (state.count > 0) {
         state.count--
       } else {
-        console.log(state.count)
+        state.count = 0
       }
     },
     setToken (state, token) {
