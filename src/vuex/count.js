@@ -44,7 +44,7 @@ const store = new Vuex.Store({
     setFriendSex (state, sex) {
       state.friendSex = sex
     },
-    setIsLOgin (state, status) {
+    setIsLogin (state, status) {
       state.isLogin = status
     }
   },
