@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="wrap_box">
+    <div class="wrap_box" :style="{ height: bodyHeight + 'px' }">
         <div class="wrap_top">
             <img src="../assets/image/login_paint.png" alt="">
         </div>
@@ -34,7 +34,8 @@ export default {
     return {
       username: '',
       password: '',
-      tipTitle: ''
+      tipTitle: '',
+      bodyHeight: ''
     }
   },
   components: {
@@ -55,7 +56,14 @@ export default {
             }, 800)
           }
         })
+    },
+    getHeight () {
+      this.bodyHeight = document.documentElement.clientHeight
+      console.log(this.bodyHeight)
     }
+  },
+  created () {
+    this.getHeight()
   }
 }
 </script>
