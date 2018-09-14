@@ -16,6 +16,7 @@
                     <input type="password" v-model="password" placeholder="请输入密码">
                 </div>
             </div>
+            <p class="explain">登录密码为云家园的密码哦~</p>
         </div>
         <div class="wrap_bottom">
             <button type="submit">登录</button>
@@ -43,25 +44,15 @@ export default {
     onSubmit () {
       this.$axios.post('api/login', { 'userId': this.username, 'password': this.password })
         .then((res) => {
-          // console.log(this.username)
-          // console.log(this.password)
-          // console.log(typeof this.username)
-          // console.log(typeof this.password)
-          this.$store.commit('setToken', res.data.token)
-          this.$store.commit('setIsLogin', true)
           if (res.data.status === 1) {
+            this.$store.commit('setToken', res.data.token)
+            this.$store.commit('setIsLogin', true)
             this.$router.push('/index')
           } else {
-            // console.log(res.status + ',' + res.message)
-            // if ((this.username != null && this.username.length > 0) || (this.password != null && this.password.length > 0)) {
-            //   this.tipTitle = '用户名或密码错误！'
-            // } else {
-            //   this.tipTitle = '用户名或密码不能为空！'
-            // }
             this.tipTitle = res.data.message
             setTimeout(() => {
               this.tipTitle = ''
-            }, 1200)
+            }, 800)
           }
         })
     }
@@ -117,10 +108,10 @@ export default {
       text-align: center;
       padding-top: 3vh;
       font-family: PingFang-SC-Light;
-      font-size: 2.8vh;
+      font-size: 3.2vh;
       font-weight: normal;
       font-stretch: normal;
-      line-height: 7.5vh;
+      line-height: 3.2vh;
       letter-spacing: 0px;
       color: #ffffff;
   }
@@ -149,12 +140,23 @@ export default {
       /*padding-left: 22vw;*/
       text-align: center;
       font-family: PingFang-SC-Light;
+      font-size: 3.2vh;
+      font-weight: normal;
+      font-stretch: normal;
+      line-height: 3.2vh;
+      letter-spacing: 0px;
+      color: #ffffff;
+  }
+  .wrap_center .explain {
+      text-align: center;
+      color: #ffffff;
+      padding-top: 4vh;
+      font-family: PingFang-SC-Light;
       font-size: 2.8vh;
       font-weight: normal;
       font-stretch: normal;
-      line-height: 4.5vh;
+      line-height: 2.3vh;
       letter-spacing: 0px;
-      color: #ffffff;
   }
 .wrap_bottom button{
     position: absolute;
