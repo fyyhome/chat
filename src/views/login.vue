@@ -107,13 +107,14 @@ export default {
       z-index: 999;
   }
   #u_input input{
-      position: absolute;
-      width: 50vw;
-      height: 7.5vh;
-      padding-left: 22vw;
-      padding-top: 1vh;
+      /*position: absolute;*/
+      /*width: 50vw;*/
+      /*height: 7.5vh;*/
+      /*padding-left: 22vw;*/
+      text-align: center;
+      padding-top: 3vh;
       font-family: PingFang-SC-Light;
-      font-size: 3vh;
+      font-size: 2.8vh;
       font-weight: normal;
       font-stretch: normal;
       line-height: 7.5vh;
@@ -139,12 +140,13 @@ export default {
       z-index: 999;
   }
   #p_input input{
-      position: absolute;
-      width: 50vw;
-      height: 4.5vh;
-      padding-left: 22vw;
+      /*position: absolute;*/
+      /*width: 50vw;*/
+      /*height: 4.5vh;*/
+      /*padding-left: 22vw;*/
+      text-align: center;
       font-family: PingFang-SC-Light;
-      font-size: 3vh;
+      font-size: 2.8vh;
       font-weight: normal;
       font-stretch: normal;
       line-height: 4.5vh;
