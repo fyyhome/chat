@@ -8,6 +8,9 @@ const instance = axios.create({
   // baseURL: '',
   timeout: 8000
 })
+
+const cancelToken = axios.CancelToken
+const source = cancelToken.source()
 // instance.defaults.headers.common['Authorization'] = ''
 instance.interceptors.request.use(async (config) => {
   if (store.state.isLogin) {
@@ -15,11 +18,15 @@ instance.interceptors.request.use(async (config) => {
       config.headers.Authorization = store.state.token
       return config
     } else {
+      config.cancelToken = source.token
       router.push('/')
+      return config
     }
   } else {
     if (config.url.indexOf('/login') === -1) {
+      config.cancelToken = source.token
       router.push('/')
+      return config
     } else {
       return config
     }

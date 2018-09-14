@@ -43,22 +43,15 @@ export default {
     onSubmit () {
       this.$axios.post('api/login', { 'userId': this.username, 'password': this.password })
         .then((res) => {
-          // console.log(this.username)
-          // console.log(this.password)
-          // console.log(typeof this.username)
-          // console.log(typeof this.password)
-          this.$store.commit('setToken', res.data.token)
-          this.$store.commit('setIsLogin', true)
           if (res.data.status === 1) {
+            this.$store.commit('setToken', res.data.token)
+            this.$store.commit('setIsLogin', true)
             this.$router.push('/index')
           } else {
-            // console.log(res.status + ',' + res.message)
-            // if ((this.username != null && this.username.length > 0) || (this.password != null && this.password.length > 0)) {
-            //   this.tipTitle = '用户名或密码错误！'
-            // } else {
-            //   this.tipTitle = '用户名或密码不能为空！'
-            // }
             this.tipTitle = res.data.message
+            setTimeout(() => {
+              this.tipTitle = ''
+            }, 800)
           }
         })
     }

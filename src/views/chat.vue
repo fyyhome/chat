@@ -7,7 +7,7 @@
             <img src="../assets/image/icon_Q.png" alt="">
             <p>{{question}}</p>
           </div>
-           <ul>
+           <ul class="msg-ul" id="msgul">
              <li v-for="(item, index) of msgs" :key="index">
                <div :class="[item.type === 'send' ? 'send-wrap' : 'recive-wrap']">
                  <img class="head-img" :src="item.type === 'send' ? myAvatar : friendAvatar" alt="headImg" />
@@ -113,6 +113,7 @@ export default {
           text: this.msgText,
           type: 'send'
         })
+        setTimeout(this.autoScroll, 200)
         this.msgText = ''
       }
     },
@@ -128,6 +129,10 @@ export default {
       } else {
         this.friendAvatar = this.$store.getters.getAvatarArr(random).girl
       }
+    },
+    autoScroll () {
+      let node = document.getElementById('msgul')
+      node.scrollTop = node.scrollHeight + 10
     }
   },
   watch: {
@@ -267,5 +272,9 @@ export default {
   }
   .bt-wrap > button:disabled{
     background-color: gray;
+  }
+  .msg-ul{
+    max-height: 75vh;
+    overflow-y: scroll;
   }
 </style>
