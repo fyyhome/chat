@@ -20,7 +20,8 @@
              <button id="sendBT" @click="sendMsg()">发送</button>
            </div>
         </div>
-        <tip title="还剩一分钟哦!" v-if="remainProgress.time < 60 && remainProgress.time >= 59"></tip>
+        <tip title="还剩一分钟哦!" v-if="remainProgress.time < 60 && remainProgress.time >= 58.5"></tip>
+        <tip :title="tipTitle" v-if="tipTitle !== ''"></tip>
         <ping-jia v-if="remainProgress.time <= 0" @pingjia-click="setPingJIa($event)" title="聊天结束了啦，评价一下TA吧～"></ping-jia>
     </div>
 </template>
@@ -32,22 +33,7 @@ import PingJia from '../components/pingjia'
 export default {
   data () {
     return {
-      Ques: [
-        '有什么好玩的游戏推荐？',
-        '分享一部你最喜欢的电影',
-        '这个假期里你经历过什么有意思的事情？',
-        '分享一个你自己特有的小技能？',
-        '或许可以从你最喜欢的小动物开始聊',
-        '介绍介绍你喜欢用的小众app吧！',
-        '可以分享一下假期里有意义的事情吗？',
-        '夏天你有什么解暑续命大法？',
-        '也许可以从聊聊你们的专业开始',
-        '或许可以先来聊聊你们最近在看的书？',
-        '或许可以从聊喜欢的音乐开始',
-        '可以从最近在玩的游戏开始聊',
-        '或许可以聊聊你喜不喜欢现在的专业？'
-      ],
-      question: '',
+      question: this.$store.state.title,
       message: '1.随机匹配 ，优先男女2.如遇违规,长按举报3.时间不定，喜欢抓紧4.多次好评，无限匹配5.随机奖励，加时续命',
       msgs: [],
       socket: null,
@@ -55,10 +41,10 @@ export default {
       remainProgress: {
         time: 180
       },
-      tipStatus: false,
       pingjia: null,
       myAvatar: null,
-      friendAvatar: null
+      friendAvatar: null,
+      tipTitle: ''
     }
   },
   components: {
@@ -66,10 +52,6 @@ export default {
     PingJia
   },
   methods: {
-    getQ () {
-      let index = Math.floor((Math.random() * this.Ques.length))
-      this.question = this.Ques[index]
-    },
     setPingJIa (evt) {
       this.pingjia = evt
       this.$axios.post('/api/evaluate', {
@@ -92,10 +74,18 @@ export default {
       }
       this.socket.onmessage = (evt) => {
         let res = JSON.parse(evt.data)
-        this.msgs.push({
-          text: res.msg,
-          type: 'recive'
-        })
+        if (res.code === 5) {
+          this.tipTitle = '用户已下线'
+          setTimeout(() => {
+            this.tipTitle = ''
+            this.$router.push('/index')
+          }, 1500)
+        } else {
+          this.msgs.push({
+            text: res.msg,
+            type: 'recive'
+          })
+        }
         console.log(res)
       }
       this.socket.onerror = (evt) => {
@@ -147,7 +137,6 @@ export default {
   },
   created () {
     this.initial()
-    this.getQ()
     this.getAvatars()
   },
   mounted () {

@@ -18,7 +18,7 @@
       <p>下次活动再见～遇见佳缘2.0等你</p>
     </div>
     <div class="containner match-allnum" v-show="allnum">
-      <button class="nonum-bt allnum-bt" disabled>无限次数匹配</button>
+      <button class="nonum-bt allnum-bt" @click="match()">无限次数匹配</button>
       <p>获得多次好评有机会无限匹配～</p>
     </div>
     <tip :title="tipTitle" v-show="tipTitle != ''"></tip>
@@ -63,22 +63,28 @@ export default {
       this.$axios.get('/api/come').then((res) => {
         if (res.data.code === 110) {
           this.isFirstLogin = true
+          this.$store.commit('setCount', res.data.times)
         } else if (res.data.code === 0) {
           this.sex = res.data.gender
           this.$store.commit('setMySex', this.sex)
+          this.$store.commit('setCount', res.data.times)
         } else {
-          console.log(res.data.msg)
+          this.tipTitle = '获取信息失败~'
+          setTimeout(() => {
+            this.tipTitle = ''
+          }, 1500)
         }
       })
     },
     match () {
-      if (this.count > 0) {
+      if (this.count > 0 && this.count < 8) {
         this.matching = true
         this.$axios.get('/api/match').then((res) => {
           if (res.data.code === 0) {
             this.$store.commit('setChatID', res.data.chatId)
             this.$store.commit('descrement')
             this.$store.commit('setFriendSex', res.data.objGender)
+            this.$store.commit('setTit6le', res.data.title)
             this.matching = false
             this.$router.push('/chat')
           } else {
@@ -87,7 +93,7 @@ export default {
               this.tipTitle = '次数已用完'
               setTimeout(() => {
                 this.tipTitle = ''
-              }, 800)
+              }, 1500)
             }
             console.log(res.data.msg)
           }
@@ -96,10 +102,14 @@ export default {
           this.tipTitle = '未匹配到TA哦～'
           setTimeout(() => {
             this.tipTitle = ''
-          }, 800)
+          }, 1500)
           console.log(error + '')
         })
+      } else if (this.count >= 8) {
+        this.nonum = false
+        this.allnum = true
       } else {
+        this.allnum = false
         this.nonum = true
       }
     },
@@ -108,7 +118,7 @@ export default {
         this.tipTitle = '评价成功'
         setTimeout(() => {
           this.tipTitle = ''
-        }, 800)
+        }, 1500)
       } else {
         this.tipTitle = ''
       }
@@ -126,7 +136,6 @@ export default {
   },
   computed: {
     myCount () {
-      // this.count = this.$store.state.count
       return this.count
     }
   }
