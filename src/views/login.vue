@@ -8,12 +8,12 @@
         <div class="wrap_center">
             <div class="input1">
                 <div id="u_input">
-                    <input type="text" :value="username" placeholder="请输入学号">
+                    <input type="text" v-model="username" placeholder="请输入学号">
                 </div>
             </div>
             <div class="input2">
                 <div id="p_input">
-                    <input type="password" :value="password" placeholder="请输入密码">
+                    <input type="password" v-model="password" placeholder="请输入密码">
                 </div>
             </div>
         </div>
@@ -41,18 +41,24 @@ export default {
   },
   methods: {
     onSubmit () {
-      this.$axios.get('api/login', { 'userId': this.username, 'password': this.password })
+      this.$axios.post('api/login', { 'userId': this.username, 'password': this.password })
         .then((res) => {
-          this.$store.commit('setToken', res.token)
-          if (res.status === 1) {
+          // console.log(this.username)
+          // console.log(this.password)
+          // console.log(typeof this.username)
+          // console.log(typeof this.password)
+          this.$store.commit('setToken', res.data.token)
+          this.$store.commit('setIsLogin', true)
+          if (res.data.status === 1) {
             this.$router.push('/index')
           } else {
-            console.log(res.status + ',' + res.message)
-            if ((this.username != null && this.username.length > 0) || (this.password != null && this.password.length > 0)) {
-              this.tipTitle = '用户名或密码错误！'
-            } else {
-              this.tipTitle = '用户名或密码不能为空！'
-            }
+            // console.log(res.status + ',' + res.message)
+            // if ((this.username != null && this.username.length > 0) || (this.password != null && this.password.length > 0)) {
+            //   this.tipTitle = '用户名或密码错误！'
+            // } else {
+            //   this.tipTitle = '用户名或密码不能为空！'
+            // }
+            this.tipTitle = res.data.message
           }
         })
     }
