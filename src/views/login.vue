@@ -59,6 +59,9 @@ export default {
             //   this.tipTitle = '用户名或密码不能为空！'
             // }
             this.tipTitle = res.data.message
+            setTimeout(() => {
+              this.tipTitle = ''
+            }, 1200)
           }
         })
     }
