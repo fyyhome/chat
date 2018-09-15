@@ -71,6 +71,12 @@ export default {
 </script>
 
 <style scoped>
+  @font-face {
+      font-family: "write";
+      src: url('../../src/assets/font/立夏手写体.ttf') format('truetype');
+      font-weight: normal;
+      font-style: normal;
+  }
   .wrap_box{
       margin: 0px;
       padding: 0px;
@@ -117,7 +123,7 @@ export default {
       /*padding-left: 22vw;*/
       text-align: center;
       padding-top: 1rem;
-      font-family: PingFang-SC-Light;
+      font-family: "write";
       font-size: 0.64rem;
       font-weight: normal;
       font-stretch: normal;
@@ -150,7 +156,7 @@ export default {
       /*padding-left: 22vw;*/
       padding-bottom: 0.2rem;
       text-align: center;
-      font-family: PingFang-SC-Light;
+      font-family: "write";
       font-size: 0.64rem;
       font-weight: normal;
       font-stretch: normal;
