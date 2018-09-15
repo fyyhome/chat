@@ -1,9 +1,9 @@
 <template>
   <div>
-    <div class="containner index-bg" v-show="!(matching || nonum || allnum)">
+    <div class="containner index-bg" v-show="!(matching || nonum || allnum) && count < 8">
       <sex-table v-show="isFirstLogin" @select-sex="getSex($event)"></sex-table>
       <button class="btn-text" @click="match()">开始匿名聊天</button>
-      <p class="btn-bottom">剩余聊天次数: {{count}}</p>
+      <p class="btn-bottom">剩余聊天次数: {{myCount}}</p>
     </div>
     <div class="containner match-bg" v-show="matching">
       <div class="matching-wrap">
@@ -13,11 +13,11 @@
       </div>
       <p>多次收获好评有机会获得无限次数匹配机会～</p>
     </div>
-    <div class="containner match-nonum" v-show="nonum">
+    <div class="containner match-nonum" v-show="nonum || count <= 0">
       <button class="nonum-bt" disabled>匹配次数已用完</button>
       <p>下次活动再见～遇见佳缘2.0等你</p>
     </div>
-    <div class="containner match-allnum" v-show="allnum">
+    <div class="containner match-allnum" v-show="!matching && count > 7">
       <button class="nonum-bt allnum-bt" @click="match()">无限次数匹配</button>
       <p>获得多次好评有机会无限匹配～</p>
     </div>
@@ -39,7 +39,6 @@ export default {
       avatar: this.$store.state.avatar,
       matching: false,
       nonum: false,
-      allnum: false,
       tipTitle: ''
     }
   },
@@ -64,10 +63,12 @@ export default {
         if (res.data.code === 110) {
           this.isFirstLogin = true
           this.$store.commit('setCount', res.data.times)
+          this.count = this.$store.state.count
         } else if (res.data.code === 0) {
           this.sex = res.data.gender
           this.$store.commit('setMySex', this.sex)
           this.$store.commit('setCount', res.data.times)
+          this.count = this.$store.state.count
         } else {
           this.tipTitle = '获取信息失败~'
           setTimeout(() => {
@@ -77,7 +78,7 @@ export default {
       })
     },
     match () {
-      if (this.count > 0 && this.count < 8) {
+      if (this.count > 0) {
         this.matching = true
         this.$axios.get('/api/match').then((res) => {
           if (res.data.code === 0) {
@@ -95,7 +96,6 @@ export default {
                 this.tipTitle = ''
               }, 1500)
             }
-            console.log(res.data.msg)
           }
         }).catch((error) => {
           this.matching = false
@@ -105,11 +105,7 @@ export default {
           }, 1500)
           console.log(error + '')
         })
-      } else if (this.count >= 8) {
-        this.nonum = false
-        this.allnum = true
       } else {
-        this.allnum = false
         this.nonum = true
       }
     },
@@ -135,8 +131,13 @@ export default {
     '$router': 'fetchRouterMsg'
   },
   computed: {
-    myCount () {
-      return this.count
+    myCount: {
+      get () {
+        return this.$store.state.count
+      },
+      set () {
+        this.count = this.$store.state.count
+      }
     }
   }
 }
