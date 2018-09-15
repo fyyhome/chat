@@ -86,7 +86,7 @@ export default {
   }
   .wrap_top img{
       width: 71vw;
-      height: 11rem;
+      height: 10rem;
   }
   input{
       border: none;
@@ -104,7 +104,7 @@ export default {
       justify-content:center;
       top: 11.2rem;
       width: 56vw;
-      height: 1.5rem;
+      height: 2.1rem;
       background-size: 100% 100%;
       background-repeat: no-repeat;
       background-image: url('../assets/image/login_user.png');
@@ -116,7 +116,7 @@ export default {
       /*height: 7.5vh;*/
       /*padding-left: 22vw;*/
       text-align: center;
-      padding-top: 0.6rem;
+      padding-top: 1rem;
       font-family: PingFang-SC-Light;
       font-size: 0.64rem;
       font-weight: normal;
@@ -148,6 +148,7 @@ export default {
       /*width: 50vw;*/
       /*height: 4.5vh;*/
       /*padding-left: 22vw;*/
+      padding-bottom: 0.2rem;
       text-align: center;
       font-family: PingFang-SC-Light;
       font-size: 0.64rem;
