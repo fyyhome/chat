@@ -8,19 +8,20 @@
         <div class="wrap_center">
             <div class="input1">
                 <div id="u_input">
-                    <input type="text" v-model="username" placeholder="请输入学号">
+                    <img src="../assets/image/icon_user.png"><input type="text" v-model="username" placeholder="请输入学号">
                 </div>
             </div>
             <div class="input2">
                 <div id="p_input">
-                    <input type="password" v-model="password" placeholder="请输入密码">
+                    <img src="../assets/image/icon_password.png"><input type="password" v-model="password" placeholder="请输入密码">
                 </div>
             </div>
-            <p class="explain">登录密码为云家园的密码哦~</p>
+            <p class="explain">（登录密码为云家园的密码哦~）</p>
         </div>
         <div class="wrap_bottom">
             <button type="submit">登录</button>
         </div>
+        <div class="icon"><img src="../assets/image/logo.png" alt=""></div>
         </form>
     </div>
     <tip :title="tipTitle" v-show="tipTitle != ''"></tip>
@@ -71,12 +72,6 @@ export default {
 </script>
 
 <style scoped>
-  @font-face {
-      font-family: "write";
-      src: url('../../src/assets/font/立夏手写体.ttf') format('truetype');
-      font-weight: normal;
-      font-style: normal;
-  }
   .wrap_box{
       margin: 0px;
       padding: 0px;
@@ -88,28 +83,32 @@ export default {
   }
   .wrap_top{
       display: flex;
-      justify-content: center; /*子元素水平居中*/
+      justify-content: center;
   }
   .wrap_top img{
       width: 71vw;
-      height: 10rem;
+      height: 11.5rem;
   }
   input{
       border: none;
       outline: none;
       background-color: transparent;
   }
-  input::-webkit-input-placeholder{ /* WebKit, Blink, Edge */
-      color: #ffffff;
+  input::-webkit-input-placeholder{
+      font-size: 0.54rem;
+      color: #ababab;
   }
-  input:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
-      color: #ffffff;
+  input:-moz-placeholder {
+      font-size: 0.54rem;
+      color: #ababab;
   }
-  input::-moz-placeholder { /* Mozilla Firefox 19+ */
-      color: #ffffff;
+  input::-moz-placeholder {
+      font-size: 0.54rem;
+      color: #ababab;
   }
-  input:-ms-input-placeholder { /* Internet Explorer 10-11 */
-      color: #ffffff;
+  input:-ms-input-placeholder {
+      font-size: 0.54rem;
+      color: #ababab;
   }
   .input1{
       display: flex;
@@ -119,29 +118,26 @@ export default {
   }
   #u_input{
       display: flex;
-      justify-content:center;
-      top: 11.2rem;
-      width: 56vw;
-      height: 2.1rem;
-      background-size: 100% 100%;
-      background-repeat: no-repeat;
-      background-image: url('../assets/image/login_user.png');
-      z-index: 999;
+      width: 46vw;
+      margin: 1rem 0;
+  }
+  #u_input img{
+      padding-top: 0.1rem;
+      width: 0.81rem;
+      height: 0.74rem;
   }
   #u_input input{
-      /*position: absolute;*/
-      /*width: 50vw;*/
-      /*height: 7.5vh;*/
-      /*padding-left: 22vw;*/
+      margin-left: 0.1rem;
       text-align: center;
-      padding-top: 1rem;
-      font-family: "write";
-      font-size: 0.64rem;
+      width: 40vw;
+      height: 0.8rem;
       font-weight: normal;
       font-stretch: normal;
-      line-height: 0.64rem;
+      line-height: 0.54rem;
       letter-spacing: 0px;
-      color: #ffffff;
+      font-size: 0.54rem;
+      color: #ababab;
+      border-bottom: 1px solid #ed847d;
   }
   .input2{
       display: flex;
@@ -150,58 +146,57 @@ export default {
       align-items:center;
   }
   #p_input{
-      margin-top: 1.2rem;
       display: flex;
-      justify-content:center;
-      top: 13.2rem;
-      width: 56vw;
-      height: 1rem;
-      background-size: 100% 100%;
-      background-repeat: no-repeat;
-      background-image: url('../assets/image/login_password.png');
-      z-index: 999;
+      width: 46vw;
+  }
+  #p_input img{
+      width: 0.68rem;
+      height: 1.01rem;
   }
   #p_input input{
-      /*position: absolute;*/
-      /*width: 50vw;*/
-      /*height: 4.5vh;*/
-      /*padding-left: 22vw;*/
-      padding-bottom: 0.2rem;
+      margin-top: 0.1rem;
+      margin-left: 0.22rem;
       text-align: center;
-      font-family: "write";
-      font-size: 0.64rem;
-      font-weight: normal;
-      font-stretch: normal;
-      line-height: 0.64rem;
+      width: 40vw;
+      height: 0.8rem;
+      line-height: 0.54rem;
       letter-spacing: 0px;
-      color: #ffffff;
+      font-size: 0.54rem;
+      color: #ababab;
+      border-bottom: 1px solid #ed847d;
   }
   .wrap_center .explain {
       text-align: center;
-      color: #ffffff;
-      padding-top: 0.8rem;
-      font-family: PingFang-SC-Light;
-      font-size: 0.56rem;
+      color: #ed847d;
+      padding-top: 0.64rem;
+      font-size: 0.46rem;
       font-weight: normal;
       font-stretch: normal;
-      line-height: 0.56rem;
+      line-height: 0.46rem;
       letter-spacing: 0px;
   }
-.wrap_bottom button{
+  .wrap_bottom button{
     position: absolute;
-    top: 17rem;
-    left: 26.5vw;
+    top: 16.91rem;
+    left: 26.9vw;
     border: none;
-    width: 47vw;
+    width: 47.1vw;
     height: 1.28rem;
-    background-color: #d7a2e6;
+    background-color: #f37a96;
     border-radius: 0.2rem;
     font-family: PingFang-SC-Regular;
-    font-size: 0.5rem;
+    font-size: 0.54rem;
     font-weight: normal;
     font-stretch: normal;
-    line-height: 0.5rem;
+    line-height: 0.54rem;
     letter-spacing: 0px;
     color: #ffffff;
+  }
+  .icon{
+      position: absolute;
+      width: 0.84rem;
+      height: 0.72rem;
+      bottom: 0.8rem;
+      right: 0.8rem;
   }
 </style>
