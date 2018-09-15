@@ -22,7 +22,7 @@
         </div>
         <tip title="还剩一分钟哦!" v-if="remainProgress.time < 60 && remainProgress.time >= 58.5"></tip>
         <tip :title="tipTitle" v-if="tipTitle !== ''"></tip>
-        <ping-jia  @pingjia-click="setPingJIa($event)" title="聊天结束了啦，评价一下TA吧～"></ping-jia>
+        <ping-jia v-if="remainProgress.time <= 0" @pingjia-click="setPingJIa($event)" title="聊天结束了啦，评价一下TA吧～"></ping-jia>
     </div>
 </template>
 
