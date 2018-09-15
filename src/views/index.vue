@@ -1,14 +1,14 @@
 <template>
   <div>
-    <div class="containner index-bg" v-show="!(matching || nonum || allnum) && count < 8">
+    <div class="containner index-bg" v-show="!(matching || nonum ) && count < 8">
       <sex-table v-show="isFirstLogin" @select-sex="getSex($event)"></sex-table>
       <button class="btn-text" @click="match()">开始匿名聊天</button>
       <p class="btn-bottom">剩余聊天次数: {{myCount}}</p>
     </div>
     <div class="containner match-bg" v-show="matching">
       <div class="matching-wrap">
-        <div class="headimg-wrap"><img :src="avatar" alt=""></div>
-        <div><img src="../assets/image/transmit.png" alt=""></div>
+        <div class="headimg-wrap"><img :src="myAvatar" alt="avatar"></div>
+        <div><img class="matching-signal" src="../assets/image/matching-signal.gif" alt="matching"></div>
         <div class="headimg-wrap match-friend"><img src="" alt=""></div>
       </div>
       <p>多次收获好评有机会获得无限次数匹配机会～</p>
@@ -36,10 +36,10 @@ export default {
       sex: '',
       isFirstLogin: false,
       count: this.$store.state.count,
-      avatar: this.$store.state.avatar,
       matching: false,
       nonum: false,
-      tipTitle: ''
+      tipTitle: '',
+      random: null
     }
   },
   components: {
@@ -49,10 +49,12 @@ export default {
   methods: {
     getSex (value) {
       this.sex = value === '男' ? 0 : 1
-      console.log(this.sex)
       this.$axios.get(`/api/updategender?gender=${this.sex}`).then((res) => {
         if (res.data.code !== 0) {
-          console.log('修改失败')
+          this.tipTitle = '修改失败～'
+          setTimeout(() => {
+            this.tipTitle = ''
+          }, 1500)
         } else {
           this.$store.commit('setMySex', this.sex)
         }
@@ -79,6 +81,7 @@ export default {
     },
     match () {
       if (this.count > 0) {
+        this.setAvatars()
         this.matching = true
         this.$axios.get('/api/match').then((res) => {
           if (res.data.code === 0) {
@@ -86,6 +89,7 @@ export default {
             this.$store.commit('descrement')
             this.$store.commit('setFriendSex', res.data.objGender)
             this.$store.commit('setTitle', res.data.title)
+            this.setFriendAvatar()
             this.matching = false
             this.$router.push('/chat')
           } else {
@@ -118,6 +122,21 @@ export default {
       } else {
         this.tipTitle = ''
       }
+    },
+    setAvatars () {
+      this.random = Math.floor(2 * Math.random())
+      if (this.$store.state.mySex === 0) {
+        this.$store.commit('setAvatar', this.$store.getters.getAvatarArr(this.random).boy)
+      } else {
+        this.$store.commit('setAvatar', this.$store.getters.getAvatarArr(this.random).girl)
+      }
+    },
+    setFriendAvatar () {
+      if (this.$store.state.friendSex === 0) {
+        this.$store.commit('setFriendAvatar', this.$store.getters.getAvatarArr(this.random).boy)
+      } else {
+        this.$store.commit('setFriendAvatar', this.$store.getters.getAvatarArr(this.random).girl)
+      }
     }
   },
   created () {
@@ -138,6 +157,9 @@ export default {
       set () {
         this.count = this.$store.state.count
       }
+    },
+    myAvatar () {
+      return this.$store.state.avatar
     }
   }
 }
@@ -153,23 +175,23 @@ export default {
     background-repeat: no-repeat;
   }
   .index-bg{
-    background-image: url('../assets/image/background.gif');
+    background-image: url('../assets/image/index-bg.gif');
   }
   .match-bg{
-    background-image: url('../assets/image/background1.png');
+    background-image: url('../assets/image/1_paint.png');
   }
   .match-nonum{
-    background-image: url('../assets/image/background3.png');
+    background-image: url('../assets/image/3_paint.png');
   }
   .match-allnum{
-    background-image: url('../assets/image/background2.png');
+    background-image: url('../assets/image/2_paint.png');
   }
   .matching-wrap{
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    width: 68vw;
+    width: 60vw;
     height: 14vh;
     position: absolute;
     top: 65vh;
@@ -184,7 +206,6 @@ export default {
     left: 50%;
     transform: translateX(-50%);
     text-align: center;
-    font-family: PingFang-SC-Regular;
     font-size: 2vh;
     letter-spacing: 0px;
     color: #ffffff;
@@ -196,7 +217,6 @@ export default {
     left: 50%;
     transform: translateX(-50%);
     text-align: center;
-    font-family: PingFang-SC-Regular;
     font-size: 2vh;
     letter-spacing: 0px;
     color: #ffffff;
@@ -229,9 +249,6 @@ export default {
     left: 50%;
     color: #ffffff;
     font-size: 2.8vh;
-    font-family: PingFang-SC-Regular;
-    font-weight: normal;
-    font-stretch: normal;
     letter-spacing: 0px;
     background-color: grey;
     text-align: center;
@@ -255,9 +272,6 @@ export default {
     height: 7.5vh;
     text-align: center;
     font-size: 2.8vh;
-    font-family: PingFang-SC-Regular;
-    font-weight: normal;
-    font-stretch: normal;
     letter-spacing: 0px;
     color: #ffffff;
   }
@@ -265,12 +279,13 @@ export default {
     position: relative;
     top:83vh;
     text-align: center;
-    font-family: PingFang-SC-Regular;
     font-size: 2vh;
-    font-weight: normal;
-    font-stretch: normal;
     line-height: 48px;
     letter-spacing: 0px;
     color: #696969;
+  }
+  .matching-signal {
+    width: 20vw;
+    height: 20vw;
   }
 </style>

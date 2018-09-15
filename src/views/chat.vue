@@ -198,6 +198,7 @@ export default {
     border: 1px solid #ffb5b5;
     border-radius: 8px;
     padding: 6px;
+    margin: 1.6vh 0;
     max-width: 50vw;
     display: flex;
     align-items: center;
@@ -215,10 +216,7 @@ export default {
     margin: 0 auto;
     margin-top: 20px;
     margin-bottom: 20px;
-    font-family: PingFang-SC-Regular;
     font-size: 16px;
-    font-weight: normal;
-    font-stretch: normal;
     letter-spacing: 0px;
     color: #dc7474;
   }
@@ -247,10 +245,7 @@ export default {
     background-color: white;
     border-radius: 8px;
     padding-left: 5px;
-    font-family: PingFang-SC-Regular;
     font-size: 0.42rem;
-    font-weight: normal;
-    font-stretch: normal;
     letter-spacing: 0px;
     color: #666666;
 
@@ -261,10 +256,7 @@ export default {
     border: 0;
     border-radius: 8px;
     background-color: #d66161;
-    font-family: PingFang-SC-Regular;
     font-size: 0.42rem;
-    font-weight: normal;
-    font-stretch: normal;
     letter-spacing: 0px;
     color: #ffffff;
   }

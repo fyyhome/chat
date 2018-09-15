@@ -20,7 +20,8 @@ const store = new Vuex.Store({
     ],
     token: '',
     isLogin: false,
-    title: ''
+    title: '',
+    friendAvatar: ''
   },
   mutations: {
     descrement (state) {
@@ -53,6 +54,9 @@ const store = new Vuex.Store({
     },
     setTitle (state, text) {
       state.title = text
+    },
+    setFriendAvatar (state, src) {
+      state.friendAvatar = src
     }
   },
   getters: {
@@ -66,7 +70,8 @@ const store = new Vuex.Store({
       return state.avatarArr[index]
     },
     getIsLogin: state => state.isLogin,
-    getTitle: state => state.title
+    getTitle: state => state.title,
+    getFriendAvatar: state => state.friendAvatar
   }
 })
 
