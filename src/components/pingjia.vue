@@ -47,7 +47,7 @@ export default {
   .title{
     margin-top: 10px;
     font-family: PingFang-SC-Regular;
-    font-size: 2.2vh;
+    font-size: 2.6vh;
     font-weight: normal;
     font-stretch: normal;
     letter-spacing: 0px;
@@ -79,5 +79,6 @@ export default {
   }
   .avatar-wrap > span{
     padding: 10px;
+    font-size: 16px;
   }
 </style>

@@ -38,7 +38,7 @@ export default {
       count: this.$store.state.count,
       matching: false,
       nonum: false,
-      tipTitle: '',
+      tipTitle: '没有匹配到TA',
       random: null
     }
   },
@@ -277,7 +277,7 @@ export default {
   }
   .btn-bottom {
     position: relative;
-    top:83vh;
+    top:80vh;
     text-align: center;
     font-size: 2vh;
     line-height: 48px;
