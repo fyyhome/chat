@@ -59,7 +59,9 @@ export default {
     },
     getHeight () {
       this.bodyHeight = document.documentElement.clientHeight
-      console.log(this.bodyHeight)
+      document.documentElement.style.fontSize = this.bodyHeight / 20 + 'px'
+      // height=640 1vh = 0.2rem
+      // console.log(this.bodyHeight)
     }
   },
   created () {
@@ -84,7 +86,7 @@ export default {
   }
   .wrap_top img{
       width: 71vw;
-      height: 55vh;
+      height: 11rem;
   }
   input{
       border: none;
@@ -100,9 +102,9 @@ export default {
   #u_input{
       display: flex;
       justify-content:center;
-      top: 56vh;
+      top: 11.2rem;
       width: 56vw;
-      height: 7.5vh;
+      height: 1.5rem;
       background-size: 100% 100%;
       background-repeat: no-repeat;
       background-image: url('../assets/image/login_user.png');
@@ -114,12 +116,12 @@ export default {
       /*height: 7.5vh;*/
       /*padding-left: 22vw;*/
       text-align: center;
-      padding-top: 3vh;
+      padding-top: 0.6rem;
       font-family: PingFang-SC-Light;
-      font-size: 3.2vh;
+      font-size: 0.64rem;
       font-weight: normal;
       font-stretch: normal;
-      line-height: 3.2vh;
+      line-height: 0.64rem;
       letter-spacing: 0px;
       color: #ffffff;
   }
@@ -130,12 +132,12 @@ export default {
       align-items:center;
   }
   #p_input{
-      margin-top: 6vh;
+      margin-top: 1.2rem;
       display: flex;
       justify-content:center;
-      top: 66vh;
+      top: 13.2rem;
       width: 56vw;
-      height: 5vh;
+      height: 1rem;
       background-size: 100% 100%;
       background-repeat: no-repeat;
       background-image: url('../assets/image/login_password.png');
@@ -148,38 +150,38 @@ export default {
       /*padding-left: 22vw;*/
       text-align: center;
       font-family: PingFang-SC-Light;
-      font-size: 3.2vh;
+      font-size: 0.64rem;
       font-weight: normal;
       font-stretch: normal;
-      line-height: 3.2vh;
+      line-height: 0.64rem;
       letter-spacing: 0px;
       color: #ffffff;
   }
   .wrap_center .explain {
       text-align: center;
       color: #ffffff;
-      padding-top: 4vh;
+      padding-top: 0.8rem;
       font-family: PingFang-SC-Light;
-      font-size: 2.8vh;
+      font-size: 0.56rem;
       font-weight: normal;
       font-stretch: normal;
-      line-height: 2.3vh;
+      line-height: 0.56rem;
       letter-spacing: 0px;
   }
 .wrap_bottom button{
     position: absolute;
-    top: 85vh;
+    top: 17rem;
     left: 26.5vw;
     border: none;
     width: 47vw;
-    height: 6.4vh;
+    height: 1.28rem;
     background-color: #d7a2e6;
-    border-radius: 1vh;
+    border-radius: 0.2rem;
     font-family: PingFang-SC-Regular;
-    font-size: 2.5vh;
+    font-size: 0.5rem;
     font-weight: normal;
     font-stretch: normal;
-    line-height: 2.5vh;
+    line-height: 0.5rem;
     letter-spacing: 0px;
     color: #ffffff;
   }

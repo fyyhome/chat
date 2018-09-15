@@ -123,6 +123,10 @@ export default {
     autoScroll () {
       let node = document.getElementById('msgul')
       node.scrollTop = node.scrollHeight + 10
+    },
+    getHeight () {
+      this.bodyHeight = document.documentElement.clientHeight
+      document.documentElement.style.fontSize = this.bodyHeight / 20 + 'px'
     }
   },
   watch: {
@@ -138,6 +142,7 @@ export default {
   created () {
     this.initial()
     this.getAvatars()
+    this.getHeight()
   },
   mounted () {
     let node = document.getElementById('myCanvas')
@@ -184,7 +189,7 @@ export default {
   }
   .message-wrap{
     box-sizing: border-box;
-    font-size: 2vh;
+    font-size: 0.4rem;
     background-color: #ffffff;
     border: 1px solid #ffb5b5;
     border-radius: 8px;
@@ -202,7 +207,7 @@ export default {
     height: 8vw;
     background-color: white;
     border: 0;
-    border-radius: 5vh;
+    border-radius: 1rem;
     margin: 0 auto;
     margin-top: 20px;
     margin-bottom: 20px;
@@ -227,19 +232,19 @@ export default {
     position: absolute;
     left: 50%;
     margin-left: -45vw;
-    bottom: 4vh;
+    bottom: 0.8rem;
     display: flex;
     justify-content: space-between;
   }
   .bt-wrap > input{
     width: 75vw;
-    height: 5vh;
+    height: 1rem;
     border: 0;
     background-color: white;
     border-radius: 8px;
     padding-left: 5px;
     font-family: PingFang-SC-Regular;
-    font-size: 1.9vh;
+    font-size: 0.42rem;
     font-weight: normal;
     font-stretch: normal;
     letter-spacing: 0px;
@@ -248,12 +253,12 @@ export default {
   }
   .bt-wrap > button{
     width: 12vw;
-    height: 5vh;
+    height: 1rem;
     border: 0;
     border-radius: 8px;
     background-color: #d66161;
     font-family: PingFang-SC-Regular;
-    font-size: 1.9vh;
+    font-size: 0.42rem;
     font-weight: normal;
     font-stretch: normal;
     letter-spacing: 0px;
@@ -263,7 +268,7 @@ export default {
     background-color: gray;
   }
   .msg-ul{
-    max-height: 75vh;
+    max-height: 15rem;
     overflow-y: scroll;
   }
 </style>
