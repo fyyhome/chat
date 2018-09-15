@@ -14,16 +14,16 @@ export default {
   .tip-wrap{
     width: 60vw;
     max-width: 80vw;
-    min-height: 10vh;
+    min-height: 8vh;
     position: absolute;
     z-index: 999;
-    top: 60%;
+    top: 52%;
     left: 50%;
     transform: translate(-50%, -50%);
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 2.1vh;
+    font-size: 18px;
     color: white;
     background-color: rgba(14, 14, 14, 0.71);
     padding: 0 10px;
