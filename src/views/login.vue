@@ -2,7 +2,7 @@
   <div>
     <div class="wrap_box" :style="{ height: bodyHeight + 'px' }">
         <div class="wrap_top">
-            <img src="../assets/image/login_paint.png" alt="">
+            <img src="../assets/image/0_paint.png" alt="">
         </div>
         <form @submit.prevent="onSubmit">
         <div class="wrap_center">
@@ -83,8 +83,8 @@ export default {
       width: 100vw;
       height: 100vh;
       background-size: 100% 100%;
-      background-repeat: no-repeat;
-      background-image: url('../assets/image/login_background.png');
+      /*background-repeat: no-repeat;*/
+      /*background-image: url('../assets/image/login_background.png');*/
   }
   .wrap_top{
       display: flex;
@@ -98,6 +98,18 @@ export default {
       border: none;
       outline: none;
       background-color: transparent;
+  }
+  input::-webkit-input-placeholder{ /* WebKit, Blink, Edge */
+      color: #ffffff;
+  }
+  input:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+      color: #ffffff;
+  }
+  input::-moz-placeholder { /* Mozilla Firefox 19+ */
+      color: #ffffff;
+  }
+  input:-ms-input-placeholder { /* Internet Explorer 10-11 */
+      color: #ffffff;
   }
   .input1{
       display: flex;
