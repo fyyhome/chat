@@ -41,8 +41,6 @@ export default {
         time: 180
       },
       pingjia: null,
-      myAvatar: null,
-      friendAvatar: null,
       tipTitle: ''
     }
   },
@@ -106,19 +104,6 @@ export default {
         this.msgText = ''
       }
     },
-    getAvatars () {
-      let random = Math.floor(2 * Math.random())
-      if (this.$store.state.mySex === 0) {
-        this.myAvatar = this.$store.getters.getAvatarArr(random).boy
-      } else {
-        this.myAvatar = this.$store.getters.getAvatarArr(random).girl
-      }
-      if (this.$store.state.friendSex === 0) {
-        this.friendAvatar = this.$store.getters.getAvatarArr(random).boy
-      } else {
-        this.friendAvatar = this.$store.getters.getAvatarArr(random).girl
-      }
-    },
     autoScroll () {
       let node = document.getElementById('msgul')
       node.scrollTop = node.scrollHeight + 10
@@ -140,7 +125,6 @@ export default {
   },
   created () {
     this.initial()
-    this.getAvatars()
     this.getHeight()
   },
   mounted () {
@@ -152,6 +136,12 @@ export default {
   computed: {
     myTitle () {
       return this.$store.state.title
+    },
+    myAvatar () {
+      return this.$store.state.avatar
+    },
+    friendAvatar () {
+      return this.$store.state.friendAvatar
     }
   }
 }
@@ -193,7 +183,7 @@ export default {
   }
   .message-wrap{
     box-sizing: border-box;
-    font-size: 0.4rem;
+    font-size: 14px;
     background-color: #ffffff;
     border: 1px solid #ffb5b5;
     border-radius: 8px;
