@@ -5,7 +5,7 @@
         <div class="container">
           <div class="title">
             <img src="../assets/image/icon_Q.png" alt="">
-            <p>{{question}}</p>
+            <p>{{myTitle}}</p>
           </div>
            <ul class="msg-ul" id="msgul">
              <li v-for="(item, index) of msgs" :key="index">
@@ -33,7 +33,6 @@ import PingJia from '../components/pingjia'
 export default {
   data () {
     return {
-      question: this.$store.state.title,
       message: '1.随机匹配 ，优先男女2.如遇违规,长按举报3.时间不定，喜欢抓紧4.多次好评，无限匹配5.随机奖励，加时续命',
       msgs: [],
       socket: null,
@@ -149,6 +148,11 @@ export default {
     node.width = window.innerWidth
     node.height = window.innerHeight
     backgroundCanvasFn(node, this.remainProgress)
+  },
+  computed: {
+    myTitle () {
+      return this.$store.state.title
+    }
   }
 }
 </script>

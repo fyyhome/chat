@@ -14,8 +14,8 @@ const store = new Vuex.Store({
         girl: 'https://img4q.duitang.com/uploads/item/201503/22/20150322065402_eLx3K.jpeg'
       },
       {
-        boy: 'https://img3.duitang.com/uploads/item/201508/15/20150815095648_EWxX5.jpeg',
-        girl: 'https://img5.duitang.com/uploads/item/201508/15/20150815095636_P4SiJ.thumb.700_0.jpeg'
+        boy: 'https://img5.duitang.com/uploads/item/201508/15/20150815095636_P4SiJ.thumb.700_0.jpeg',
+        girl: 'https://img3.duitang.com/uploads/item/201508/15/20150815095648_EWxX5.jpeg'
       }
     ],
     token: '',
