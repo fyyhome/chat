@@ -85,7 +85,7 @@ export default {
             this.$store.commit('setChatID', res.data.chatId)
             this.$store.commit('descrement')
             this.$store.commit('setFriendSex', res.data.objGender)
-            this.$store.commit('setTit6le', res.data.title)
+            this.$store.commit('setTitle', res.data.title)
             this.matching = false
             this.$router.push('/chat')
           } else {
