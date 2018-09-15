@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="wrap_box">
+    <div class="wrap_box" :style="{ height: bodyHeight + 'px' }">
         <div class="wrap_top">
             <img src="../assets/image/login_paint.png" alt="">
         </div>
@@ -16,6 +16,7 @@
                     <input type="password" v-model="password" placeholder="请输入密码">
                 </div>
             </div>
+            <p class="explain">登录密码为云家园的密码哦~</p>
         </div>
         <div class="wrap_bottom">
             <button type="submit">登录</button>
@@ -33,7 +34,8 @@ export default {
     return {
       username: '',
       password: '',
-      tipTitle: ''
+      tipTitle: '',
+      bodyHeight: ''
     }
   },
   components: {
@@ -54,7 +56,14 @@ export default {
             }, 800)
           }
         })
+    },
+    getHeight () {
+      this.bodyHeight = document.documentElement.clientHeight
+      console.log(this.bodyHeight)
     }
+  },
+  created () {
+    this.getHeight()
   }
 }
 </script>
@@ -107,10 +116,10 @@ export default {
       text-align: center;
       padding-top: 3vh;
       font-family: PingFang-SC-Light;
-      font-size: 2.8vh;
+      font-size: 3.2vh;
       font-weight: normal;
       font-stretch: normal;
-      line-height: 7.5vh;
+      line-height: 3.2vh;
       letter-spacing: 0px;
       color: #ffffff;
   }
@@ -139,12 +148,23 @@ export default {
       /*padding-left: 22vw;*/
       text-align: center;
       font-family: PingFang-SC-Light;
+      font-size: 3.2vh;
+      font-weight: normal;
+      font-stretch: normal;
+      line-height: 3.2vh;
+      letter-spacing: 0px;
+      color: #ffffff;
+  }
+  .wrap_center .explain {
+      text-align: center;
+      color: #ffffff;
+      padding-top: 4vh;
+      font-family: PingFang-SC-Light;
       font-size: 2.8vh;
       font-weight: normal;
       font-stretch: normal;
-      line-height: 4.5vh;
+      line-height: 2.3vh;
       letter-spacing: 0px;
-      color: #ffffff;
   }
 .wrap_bottom button{
     position: absolute;
