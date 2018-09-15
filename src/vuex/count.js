@@ -4,7 +4,7 @@ Vue.use(Vuex)
 
 const store = new Vuex.Store({
   state: {
-    count: 7,
+    count: null,
     chatID: null,
     avatar: '',
     mySex: null,
@@ -19,15 +19,19 @@ const store = new Vuex.Store({
       }
     ],
     token: '',
-    isLogin: false
+    isLogin: false,
+    title: ''
   },
   mutations: {
     descrement (state) {
       if (state.count > 0) {
         state.count--
       } else {
-        console.log(state.count)
+        state.count = 0
       }
+    },
+    setCount (state, value) {
+      state.count = value
     },
     setToken (state, token) {
       state.token = token
@@ -46,6 +50,9 @@ const store = new Vuex.Store({
     },
     setIsLogin (state, status) {
       state.isLogin = status
+    },
+    setTitle (state, text) {
+      state.title = text
     }
   },
   getters: {
@@ -58,7 +65,8 @@ const store = new Vuex.Store({
     getAvatarArr: (state) => (index = 0) => {
       return state.avatarArr[index]
     },
-    getIsLogin: state => state.isLogin
+    getIsLogin: state => state.isLogin,
+    getTitle: state => state.title
   }
 })
 
