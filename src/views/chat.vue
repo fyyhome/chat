@@ -225,7 +225,7 @@ export default {
     position: absolute;
     left: 50%;
     margin-left: -45vw;
-    bottom: 0.8rem;
+    bottom: 3vh;
     display: flex;
     justify-content: space-between;
   }

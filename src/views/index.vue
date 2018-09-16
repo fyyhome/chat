@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="containner index-bg" v-show="!(matching || nonum ) && count < 8">
+    <div class="containner index-bg" v-show="!(matching || nonum ) && count < 8 && count > 0">
       <sex-table v-show="isFirstLogin" @select-sex="getSex($event)"></sex-table>
       <button class="btn-text" @click="match()">开始匿名聊天</button>
       <p class="btn-bottom">剩余聊天次数: {{myCount}}</p>
@@ -240,6 +240,7 @@ export default {
     width: 16vw;
     height: 16vw;
     border-radius: 50%;
+    border: 0;
   }
   .nonum-bt{
     width: 45vw;
