@@ -225,6 +225,7 @@ export default {
     width: 16vw;
     height: 16vw;
     background-color: white;
+    border: 0;
     border-radius: 50%;
     /* display: flex;
     align-items: center; */

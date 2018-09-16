@@ -157,6 +157,7 @@ export default {
   .container{
     position: absolute;
     top: 0;
+    left: 0;
     z-index: 1;
     background-color: transparent;
     width: 100vw;
