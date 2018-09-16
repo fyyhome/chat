@@ -222,10 +222,10 @@ export default {
   }
   .bt-wrap{
     width: 90vw;
-    position: absolute;
+    position: fixed;
     left: 50%;
     margin-left: -45vw;
-    bottom: 3vh;
+    bottom: 4vh;
     display: flex;
     justify-content: space-between;
   }
