@@ -61,7 +61,7 @@ export default {
           // console.log(res.data.msg)
         }
       }).catch((error) => {
-        // console.log(error + '')
+        console.log(error + '')
       })
     },
     initial () {

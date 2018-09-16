@@ -101,7 +101,7 @@ export default {
               }, 1500)
             }
           }
-        }).catch((error) => {
+        }).catch(() => {
           this.matching = false
           this.tipTitle = '未匹配到TA哦～'
           setTimeout(() => {
@@ -142,7 +142,7 @@ export default {
     this.getUserInfo()
     this.fetchRouterMsg()
     getUserAvatar().then().catch((error) => {
-      // console.log(error + '')
+      console.log(error + '')
     })
   },
   watch: {
