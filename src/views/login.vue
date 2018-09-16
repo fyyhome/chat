@@ -61,12 +61,17 @@ export default {
     getHeight () {
       this.bodyHeight = document.documentElement.clientHeight
       document.documentElement.style.fontSize = this.bodyHeight / 20 + 'px'
-      // height=640 1vh = 0.2rem
-      // console.log(this.bodyHeight)
     }
   },
   created () {
     this.getHeight()
+  },
+  mounted() {
+    window.addEventListener('resize', function () {
+      if (document.activeElement.tagName === 'INPUT'){
+        document.activeElement.scrollIntoView({behavior: "smooth"})
+      }
+    })
   }
 }
 </script>
