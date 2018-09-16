@@ -107,7 +107,6 @@ export default {
           setTimeout(() => {
             this.tipTitle = ''
           }, 1500)
-          console.log(error + '')
         })
       } else {
         this.nonum = true
@@ -143,7 +142,7 @@ export default {
     this.getUserInfo()
     this.fetchRouterMsg()
     getUserAvatar().then().catch((error) => {
-      console.log(error + '')
+      // console.log(error + '')
     })
   },
   watch: {

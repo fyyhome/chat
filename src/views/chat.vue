@@ -58,10 +58,10 @@ export default {
         if (res.data.code === 0) {
           this.$router.push({ name: 'index', params: { msg: 'pingjia' } })
         } else {
-          console.log(res.data.msg)
+          // console.log(res.data.msg)
         }
       }).catch((error) => {
-        console.log(error + '')
+        // console.log(error + '')
       })
     },
     initial () {
@@ -83,10 +83,10 @@ export default {
             type: 'recive'
           })
         }
-        console.log(res)
+        // console.log(res)
       }
       this.socket.onerror = (evt) => {
-        console.error(evt)
+        // console.error(evt)
         document.getElementById('sendBT').disabled = true
       }
       this.socket.onclose = (evt) => {
