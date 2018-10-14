@@ -1,6 +1,6 @@
 FROM node:8.9.4
-COPY . /app
-WORKDIR /app
-# RUN npm install --registry=https://registry.npm.taobao.org
-EXPOSE 3000
-CMD npm run install && npm run serve
+RUN mkdir -p /web/app
+COPY . /web/app
+WORKDIR /web/app
+EXPOSE 8080
+CMD npm install && npm run serve
